@@ -13,16 +13,16 @@ class Day extends AppModel {
 	);
 	
 	public function getNextDate() {
+		// Get the most recent date
 		$data = $this->find('first', array(
 				'fields' => array('MAX(Day.Date) as maxDate', '*')
 			)
 		);
 		$lastDate = $data[0]["maxDate"];
-		var_dump($lastDate);
-		$nextDate = date("Y-m-d", strtotime("+1 day", $lastDate));
-		var_dump($nextDate);
-		exit();
-/*
+
+		// Format the date
+		$nextDate = date("Y-m-d", strtotime(date("Y-m-d", strtotime($lastDate)) . " +1 day"));
+
 		if ($nextDate != "0000-00-00") {
 			$nextDate = date("Y-m-d");
 		} else {
@@ -30,6 +30,5 @@ class Day extends AppModel {
 		}
 
 		return $nextDate;
-*/
 	}
 }

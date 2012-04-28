@@ -7,7 +7,7 @@ class DaysController extends AppController {
 	
 	public function index() {
 		$day = $this->Day->find('first', array(
-			'order' => 'day.date DESC'
+			'order' => 'Day.Date DESC'
 		));
 		$this->set('day', $day);
 		$this->loadModel("Memory");
@@ -28,7 +28,6 @@ class DaysController extends AppController {
 			'Date' => $date,
 			'memoryID' => $memoryID
 		));
-
 		$this->Memory->read(null, $memoryID);
 		$this->Memory->set('date', $date);
 		if($this->Day->save() && $this->Memory->save()) {
